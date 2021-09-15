@@ -1,1 +1,1 @@
-# eitg05-group11
+# EITF05 Web security project – Group 11
