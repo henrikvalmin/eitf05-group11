@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST["username"]) and isset($_POST["password"]) and $_POST["username"] != '' and $_POST["password"] != '') {
 
-    $con = mysqli_connect('localhost', 'root', '', 'users') or die("Unable to connect");
+    $con = mysqli_connect('localhost', 'root', '', 'plants') or die("Unable to connect");
 
     // Prepare statement
     $statement = $con->prepare("SELECT * FROM users WHERE username=? AND password=?");
