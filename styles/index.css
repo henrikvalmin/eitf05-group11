@@ -35,14 +35,9 @@ header nav ul li a {
     color: #2f3e46;
 }
 
-aside {
-    float: right;
-    width: 20%;
-}
-
 /* --- Main content styling --- */
 main {
-    width: 80%;
+    width: 100%;
     display: grid;
     place-items: center;
     padding: 1rem;
@@ -116,7 +111,7 @@ main {
     transform: scaleX(1);
 }
 
-/* Sign up / login forms  */
+/* Sign up / login forms  */k
 
 
 #login {
@@ -174,12 +169,15 @@ form input:not(:placeholder-shown) ~ label {
     opacity: 1;
 }
 
-form button {
+form input[type=submit] {
     background-color: #40916c;
     color: #f6f4f3;
     border: none;
     border-radius: 2px;
     cursor: pointer;
+}
+form input[type=submit]:hover, form input[type=submit]:focus {
+    text-decoration: underline;
 }
 #forgot-password {
     margin-top: 0.3rem;
