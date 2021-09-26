@@ -6,6 +6,13 @@ INSERT INTO `users` (`username`, `password`, `address`) VALUES ('Vanessa', 'test
 INSERT INTO `users` (`username`, `password`, `address`) VALUES ('Henrik', 'testH', 'Göteborg');
 INSERT INTO `users` (`username`, `password`, `address`) VALUES ('Josefin', 'testJ', 'Stockholm');
 
+--Create producttable
+DROP TABLE IF EXISTS products;
+CREATE TABLE `plants`.`products`(`id` INT NOT NULL, `product_name` TEXT NOT NULL, `price` REAL NOT NULL);
+INSERT INTO `products`(`id`, `product_name`, `price`)
+VALUES (1, 'Monstera', 14.99), (2, 'Peperomia', 7.99), (3, 'Cactus', 9.99), (4, 'Succulent', 12.99);
+
+
 --Create table passwordblacklist
 CREATE TABLE `plants`.`passwordblacklist` ( `password` TEXT NOT NULL ) ENGINE = InnoDB;
 INSERT INTO passwordblacklist (password) VALUES ('123456');

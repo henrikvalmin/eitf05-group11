@@ -1,68 +1,87 @@
 <?php
-if (isset($_POST["username"]) and isset($_POST["password"]) and $_POST["username"] != '' and $_POST["password"] != '') {
+session_start();
 
-    $con = mysqli_connect('localhost', 'root', '', 'plants') or die("Unable to connect");
+if (!isset($_SESSION['attempts'])) {
+  $_SESSION['attempts'] = 0;
+}
 
-    // Create a prepared statement
-    $statement = $con->prepare("SELECT * FROM users WHERE username=? AND password=?");
-    $statement->bind_param("ss", $username, $password);
+if ($_SESSION['attempts'] < 5) {
+  if (isset($_POST["submit"])) {
 
-    // Set variables
-    $username = $_POST["username"];
-    $password = $_POST["password"];
+    if (!empty($_POST["username"]) && !empty($_POST["password"])) {
 
-    // Execute the prepared statement and store result
-    $statement->execute();
-    $result = $statement->get_result();
+      $con = mysqli_connect('localhost', 'root', '', 'plants') or die("Unable to connect");
 
-    // --- ALLOW SQL INJECTION : these two lines instead of the two above ---
-    // $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-    // $result = $con->query($query);
+      // Create a prepared statement
+      $statement = $con->prepare("SELECT * FROM users WHERE username=? AND password=?");
+      $statement->bind_param("ss", $username, $password);
 
-    //     -> allows input with the form 
-    //          a' OR '1'='1
-    //      for both fields, return all rows from the user database in the
-    //      following select statement
+      // Set variables
+      $username = $_POST["username"];
+      $password = $_POST["password"];
 
+      // Execute the prepared statement and store result
+      $statement->execute();
+      $result = $statement->get_result();
 
+      // --- ALLOW SQL INJECTION : these two lines instead of the two above ---
+      // $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+      // $result = $con->query($query);
 
+      // One form of attack: login as user with unknown password by
+      // inputting    a' OR '1'='1   as password 
 
-    // Check if user exists, based on result
-    if ($result->num_rows > 0) {
-        //$row = $result->fetch_assoc();
+      if ($result->num_rows > 0) {
         $res = $result->fetch_all();
-        header('Content-Type: application/json');
-        // echo json_encode($row);
 
         // ----- Setting the username if successful login
         session_start();
         session_regenerate_id();
-        header('Location: ../index.php');
+        header('Location: ./homepage.php');
         $_SESSION["curr_user"] = $res[0][0];
+      } else {
+        echo "Invalid username or password!";
+        $_SESSION['attempts']++;
+      }
     } else {
-        header('Content-Type: application/json');
-        echo json_encode(['msg' => "user does not exist"]);
+      echo "Did you forget to fill in either your username and password? All fields are required, please try again.";
     }
+  }
 } else {
-    $response = [
-        'msg' => "Username and password weren't both set."
-    ];
-
-    header('Content-Type: application/json');
-    echo json_encode($response);
+  echo "Too many failed attempts, try again later";
 }
-// --- legacy ---
-//     $response = array(
-//         'Attempted username' => "$username",
-//         'Attempted password' => "$password",
-//     );
-//     header('Content-Type: application/json');
-//     echo json_encode($response);
-// } else {
-//     $response = [
-//         'msg' => "Username and password weren't both set."
-//     ];
 
-//     header('Content-Type: application/json');
-//     echo json_encode($response);
-// }
+?>
+
+<html>
+
+<head>
+  <title>User Login</title>
+  <link rel="stylesheet" href="../styles/index.css" />
+</head>
+
+<body>
+  <main>
+    <form name="frmUser" method="post" action="">
+      <div class="message"><?php if ($message != "") {
+                              echo $message;
+                            } ?></div>
+      <h3>Enter Login Details</h3>
+
+      <p>
+        <input type="text" name="username" placeholder="Username" />
+        <label for="Username">Username</label>
+      </p>
+
+      <p>
+        <input type="password" name="password" placeholder="Password">
+        <label for="Password">Password</label>
+      </p>
+
+      <input type="submit" name="submit" value="Submit">
+      <input type="reset">
+    </form>
+  </main>
+</body>
+
+</html>

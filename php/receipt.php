@@ -4,51 +4,24 @@
     <title>Plants 'n' stuff</title>
     <link rel="stylesheet" href="../styles/index.css" />
     <link rel="stylesheet" href="../styles/receipt.css" />
-
-    <!-- Linking web fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=WindSong" />
 </head>
 
-<header>
-    <!-- Temporary working title for web shop -->
-    <h1><a href="../index.php">Plants 'n' stuff</a></h1>
-    <?php
-    session_start();
-    if (isset($_SESSION["curr_user"])) {
-        $curr_user = $_SESSION["curr_user"];
-        echo "<h2>Welcome, $curr_user!</h2>";
-    } else {
-        echo "<h2>Welcome!</h2>";
-    }
-    ?>
-    <nav>
-        <ul>
-            <li><a href="#">Nav item 1</a></li>
-            <li><a href="#">Nav item 2</a></li>
-            <li><a href="#">Nav item 3</a></li>
-        </ul>
-    </nav>
-</header>
+<?php include('header.php'); ?>
 
 <body>
     <main>
         <div id="receipt">
             <h2>Receipt</h2>
-
             <?php
+            $db = new Database();
+            $cart_products = $_SESSION["cart"];
 
-            // Initializing cookie values for testing, 
-            // will be set from "Add to cart" later
-            session_start();
-            $chosen_products = array(array("Monstera", 14.99), array("Cactus", 9.99));
-            $_SESSION["products"] = $chosen_products;
-
-            // ––––––––––––––––
-            // Building up the receipt from products that have been purchased
             $total_price = 0;
-            for ($i = 0; $i < sizeof($_SESSION["products"]); $i++) {
-                $name = $_SESSION["products"][$i][0];
-                $price = $_SESSION["products"][$i][1];
+            for ($i = 0; $i < sizeof($cart_products); $i++) {
+                $id = $cart_products[$i];
+                $name = $db->getName($id);
+                $price = $db->getPrice($id);
 
                 echo "<p>$name <span class='price'>$$price</span></p>";
                 $total_price = $total_price + $price;
