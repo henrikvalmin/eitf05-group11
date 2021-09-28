@@ -4,6 +4,13 @@ if (isset($_POST["id"])) {
     if (!isset($_SESSION["cart"])) {
         $_SESSION["cart"] = array();
     }
-    array_push($_SESSION["cart"], $_POST["id"]);
+
+    $id = $_POST["id"];
+    if ($_SESSION["cart"][$id]) {
+        $_SESSION["cart"][$id]++;
+    } else {
+        $_SESSION["cart"][$id] = 1;
+    }
+
     header("Location: homepage.php");
 }

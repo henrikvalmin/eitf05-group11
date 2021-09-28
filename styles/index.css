@@ -82,6 +82,9 @@ main {
     font-weight: 300;
     letter-spacing: 2px;
 }
+.product-card form {
+    padding: 0;
+}
 .product-card .add-to-cart {
     margin-top: 1rem;
     justify-self: flex-end;
@@ -92,8 +95,7 @@ main {
 }
 
 
-
-/* Sign up / login forms  */k
+/* Sign up / login forms  */
 form {
     width: 15rem;
     padding: 0 1rem;
@@ -105,13 +107,17 @@ form h3 {
     margin-top: 2rem;
     text-align: center;
 }
+form p:first-of-type {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
 form p {
     position: relative;
     width: 15rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 2rem 0;
+    margin-bottom: 1.5rem;
 }
 form input, form button {
     border: 1px solid rgba(0, 0, 0, 0.15);
@@ -144,13 +150,15 @@ form input:not(:placeholder-shown) ~ label {
     font-size: 0.75rem;
     opacity: 1;
 }
-
 form input[type=submit] {
     background-color: #40916c;
     color: #f6f4f3;
     border: none;
     border-radius: 2px;
     cursor: pointer;
+}
+form input[type=submit], form input[type=reset] {
+    width: calc(100% + 2rem);
 }
 form input[type=submit]:hover, form input[type=submit]:focus {
     text-decoration: underline;

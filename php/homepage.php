@@ -15,6 +15,8 @@
       $db = new Database();
       $products = $db->getProducts();
 
+
+
       for ($i = 0; $i < sizeof($products); $i++) {
         $product = $products[$i];
         $id = $product[0];
@@ -31,6 +33,7 @@
               </form>
               </div>";
       }
+
       ?>
     </div>
   </main>

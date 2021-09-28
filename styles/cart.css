@@ -1,0 +1,37 @@
+.show-cart {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: fit-content;
+    border: 1px solid gray;
+}
+.cart-item {
+    width: 20rem;
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem;
+}
+.cart-item form {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+.cart-item form select {
+    text-align: end;
+    font-size: .9rem;
+}
+.cart-item form input[type="submit"] {
+    width: 10rem;
+    margin-left: 2rem;
+}
+.name {
+    font-weight: 600;
+}
+.price {
+    margin-top: .5rem;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+.pay-form {
+    margin-top: 3rem;
+}

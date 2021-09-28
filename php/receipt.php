@@ -18,13 +18,12 @@
             $cart_products = $_SESSION["cart"];
 
             $total_price = 0;
-            for ($i = 0; $i < sizeof($cart_products); $i++) {
-                $id = $cart_products[$i];
+            foreach ($cart_products as $id => $num) {
                 $name = $db->getName($id);
                 $price = $db->getPrice($id);
 
-                echo "<p>$name <span class='price'>$$price</span></p>";
-                $total_price = $total_price + $price;
+                echo "<p>$num x $name <span class='price'>$$price</span></p>";
+                $total_price = $total_price + $num * $price;
             }
 
             echo "<div class='total-wrapper'>

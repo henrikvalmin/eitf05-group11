@@ -12,7 +12,10 @@ if (isset($_SESSION["curr_user"])) {
 // Number of items in cart
 $items_in_cart = 0;
 if (isset($_SESSION["cart"])) {
-    $items_in_cart = sizeof($_SESSION["cart"]);
+    $items_in_cart = 0;
+    foreach ($_SESSION["cart"] as $id => $num) {
+        $items_in_cart += $num;
+    }
 }
 $cart_text = "Cart (" . $items_in_cart . " items)";
 
@@ -23,8 +26,8 @@ $cart_text = "Cart (" . $items_in_cart . " items)";
     <h2><?php echo $welcome_text; ?></h2>
     <nav>
         <ul>
-            <li><a href="#"><?php echo "$cart_text"; ?></a></li>
-            <li><a href="receipt.php">Receipt</a></li>
+            <li><a href="homepage.php">Home</a></li>
+            <li><a href="cart.php"><?php echo "$cart_text"; ?></a></li>
             <li><a href="logout.php">Log out</a></li>
         </ul>
     </nav>
