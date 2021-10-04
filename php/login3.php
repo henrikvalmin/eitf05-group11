@@ -30,13 +30,12 @@ if ($_SESSION['attempts'] < 3) {
       $con = mysqli_connect('localhost', 'root', '', 'plants') or die("Unable to connect");
 
       // Create a prepared statement
-      $statement = $con->prepare("SELECT * FROM users WHERE username=? AND password=?");
-      $statement->bind_param("ss", $username, $password);
+      $statement = $con->prepare("SELECT * FROM users WHERE username=?");
+      $statement->bind_param("s", $username);
 
       // Set variables
       $username = $_POST["username"];
       $password = $_POST["password"];
-      $attempt = $_POST['hidden'];
 
       // Execute the prepared statement and store result
       $statement->execute();
@@ -50,13 +49,20 @@ if ($_SESSION['attempts'] < 3) {
       // inputting    a' OR '1'='1   as password 
 
       if ($result->num_rows > 0) {
+        
         $res = $result->fetch_all();
-
-        // ----- Setting the username if successful login
-        session_start();
-        session_regenerate_id();
-        header('Location: ./homepage.php');
-        $_SESSION["curr_user"] = $res[0][0];
+        if (password_verify($password, $res[0][1])) {
+          // ----- Setting the username if successful login
+          session_start();
+          session_regenerate_id();
+          header('Location: ./homepage.php');
+          $_SESSION["curr_user"] = $res[0][0];
+        } else {
+          $_SESSION['attempts']++;
+          $_SESSION['stopTime']=time();
+          $attemptsLeft=3-$_SESSION['attempts'];
+          $msg="Invalid username or password! Attempts left: $attemptsLeft";
+        }
       } else {
         $_SESSION['attempts']++;
         $_SESSION['stopTime']=time();
