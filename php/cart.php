@@ -37,6 +37,7 @@ function build_select_options($curr_id)
     <main>
         <div class="show-cart">
             <?php
+
             $db = new Database();
 
             $cart_products = $_SESSION["cart"];
@@ -56,6 +57,7 @@ function build_select_options($curr_id)
                 $cart_item .= build_select_options($id);
                 $cart_item .=
                     "</select>
+                    " . csrf_input_field() . "
                         <input type='hidden' name='id' value='$id' />
                         <input type='submit' value='Update amount' />
                     </form>
