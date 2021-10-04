@@ -69,9 +69,14 @@ function build_select_options($curr_id)
         </div>
         <form method="POST" class="pay-form" action="checkout.php">
             <?php
-            echo csrf_input_field();
+            if (sizeof($_SESSION["cart"]) != 0) {
+                echo csrf_input_field();
+                echo "<input type='submit' value='Check out' />";
+            } else {
+                echo "<h3>The cart is empty!</h3>";
+            }
+
             ?>
-            <input type="submit" value="Check out" />
         </form>
     </main>
 </body>

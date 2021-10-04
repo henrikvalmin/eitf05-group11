@@ -82,6 +82,7 @@ if ($_SESSION['attempts']==3) {
 
 <head>
   <title>User Login</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=WindSong" />
   <link rel="stylesheet" href="../styles/index.css" />
 </head>
 
@@ -93,12 +94,10 @@ if ($_SESSION['attempts']==3) {
 
       <p>
         <input type="text" name="username" placeholder="Username" />
-        <label for="Username">Username</label>
       </p>
 
       <p>
         <input type="password" name="password" placeholder="Password">
-        <label for="Password">Password</label>
       </p>
 
       <input type="submit" name="submit" value="Submit">

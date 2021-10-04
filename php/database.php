@@ -35,4 +35,14 @@ class Database
         $result = $statement->get_result();
         return $result->fetch_row()[0];
     }
+
+    function getAddress($username)
+    {
+        $con = $this->getCon();
+        $statement = $con->prepare("SELECT address FROM users where username=?");
+        $statement->bind_param("s", $username);
+        $statement->execute();
+        $result = $statement->get_result();
+        return $result->fetch_row()[0];
+    }
 }
