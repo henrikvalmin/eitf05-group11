@@ -22,6 +22,10 @@
       header("location:../signup.php?error=pwdMatch");
       exit();
     }
+    if (validPassword($pwd) !== false){
+      header("location:../signup.php?error=invalidPassword");
+      exit();
+    }
     if (usernameExists($conn, $username) !== false){
       header("location:../signup.php?error=usernametaken");
       exit();
