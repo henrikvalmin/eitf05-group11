@@ -10,12 +10,9 @@ if(!isset($_SESSION['attempts'])){
 
 if ($_SESSION['attempts']>3) {
   $dif = time() - $_SESSION['stopTime'];
-  //echo "Dif: ", $dif, " Time: ", time(), " StopTime: ", $_SESSION['stopTime'];
   $lockedTime = 60*15;
-  //Låses i 1 min
-  if ($dif < 10) {
-  //if ($dif < $lockedTime) {
-      $msg="Too many failed attempts. Try again later";
+  if ($dif < $lockedTime) {
+      $msg="You have to wait a bit longer. Try again later";
   } else {
     $_SESSION['attempts'] = 0;
   }
