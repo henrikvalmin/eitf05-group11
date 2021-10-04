@@ -96,16 +96,16 @@ if ($_SESSION['attempts']==3) {
       <h3>Enter Login Details</h3>
 
       <p>
-        <input type="text" name="username" <?php if($attempt==3){?> disabled="disabled" <?php }?> placeholder="Username" />
+        <input type="text" name="username" placeholder="Username" />
         <label for="Username">Username</label>
       </p>
 
       <p>
-        <input type="password" name="password" <?php if($attempt==3){?> disabled="disabled" <?php }?> placeholder="Password">
+        <input type="password" name="password" placeholder="Password">
         <label for="Password">Password</label>
       </p>
 
-      <input type="submit" name="submit" <?php if($attempt==3){?> disabled="disabled" <?php }?>  value="Submit">
+      <input type="submit" name="submit" value="Submit">
     </form>
   </main>
 </body>
