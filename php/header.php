@@ -27,15 +27,25 @@ $cart_text = "Cart (" . $items_in_cart . " items)";
     <h2><?php echo $welcome_text; ?></h2>
     <nav>
         <ul>
-            <li><a href="homepage.php">Home</a></li>
             <li><a href="cart.php"><?php echo "$cart_text"; ?></a></li>
-            <li>
-                <form method="POST" action="logout.php" id="logout-form">
+            <?php
+            if (isset($_SESSION["curr_user"])){
+                $curr_user = $_SESSION["curr_user"];
+                echo '<li><a href= "myprofile.php">My Profile</a></li>';
+                ?>
+                 <form method="POST" action="logout.php" id="logout-form">
                     <?php
                     echo csrf_input_field();
                     ?>
                     <input id="logout-button" type="submit" value="Log out" />
-                </form>
+                </form> 
+                <?php
+            } else {
+                echo '<li><a href= "login.php">Log In</a></li>';
+                echo '<li><a href="signup.php">Sign Up</a></li>';
+            }
+            ?>
+        </ul>
 
         </ul>
     </nav>

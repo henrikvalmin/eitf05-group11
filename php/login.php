@@ -1,8 +1,7 @@
 <?php
-
+include_once 'header.php';
 // THIS CLASS ALLOWS 3 LOGIN ATTEMPTS, THEN THE LOGIN-FIELDS ARE DISABLED. IT WORKS!
 
-session_start();
 $msg="";
 
 if(!isset($_SESSION['attempts'])){

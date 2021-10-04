@@ -67,7 +67,7 @@ mysqli_stmt_close($statement);
 }
 
 function validPassword($pwd){
-    if(!preg_match('/\A(?=[\x20-\x7E]*?[A-Z])(?=[\x20-\x7E]*?[a-z])(?=[\x20-\x7E]*?[0-9])[\x20-\x7E]{6,}\z/', $pwd)){
+    if(!preg_match('/\A(?=[\x20-\x7E]*?[A-Z])(?=[\x20-\x7E]*?[a-z])(?=[\x20-\x7E]*?[0-9])[\x20-\x7E]{8,}\z/', $pwd)){
         $result = true;
     }else {
         $result = false;
