@@ -1,6 +1,7 @@
 <?php
 session_start();
 require('database.php');
+require_once('csrf.php');
 
 // User welcome text (should be logged in at this point)
 if (isset($_SESSION["curr_user"])) {
@@ -28,7 +29,14 @@ $cart_text = "Cart (" . $items_in_cart . " items)";
         <ul>
             <li><a href="homepage.php">Home</a></li>
             <li><a href="cart.php"><?php echo "$cart_text"; ?></a></li>
-            <li><a href="logout.php">Log out</a></li>
+            <li>
+                <form method="POST" action="logout.php" id="logout-form">
+                    <?php
+                    echo csrf_input_field();
+                    ?>
+                    <input id="logout-button" type="submit" value="Log out" />
+                </form>
+
         </ul>
     </nav>
 </header>

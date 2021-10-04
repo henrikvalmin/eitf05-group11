@@ -34,6 +34,26 @@ header nav ul li {
 header nav ul li a {
     color: #2f3e46;
 }
+header nav ul li a:hover, header nav ul li a:focus {
+    text-decoration: underline;
+}
+#logout-form {
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+    padding: 0;
+}
+#logout-button {
+    background-color: transparent;
+    color: black;
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    font-family: system-ui;
+    font-weight: 300;
+}
 
 /* --- Main content styling --- */
 main {

@@ -12,10 +12,9 @@
   <main>
     <div class="products">
       <?php
+      require_once('csrf.php');
       $db = new Database();
       $products = $db->getProducts();
-
-
 
       for ($i = 0; $i < sizeof($products); $i++) {
         $product = $products[$i];
@@ -28,9 +27,10 @@
                 <p class='product-name'>$name</p> 
                 <p class='price'>$$price</p>
                 <form method='POST' action='addToCart.php'>
-                <input type='hidden' name='id' value='$id' />
-                <input type='submit' value='Add to cart' />
-              </form>
+                  <input type='hidden' name='id' value='$id' />
+                  <input type='submit' value='Add to cart' />
+                " . csrf_input_field() . "
+                </form>
               </div>";
       }
 

@@ -17,6 +17,13 @@
             $db = new Database();
             $cart_products = $_SESSION["cart"];
 
+            // Empty receipt message
+            if (sizeof($cart_products) == 0) {
+                echo "<h3>Your cart was empty!</h3>";
+                return;
+            }
+
+            // Non-empty receipt message
             $total_price = 0;
             foreach ($cart_products as $id => $num) {
                 $name = $db->getName($id);
@@ -25,10 +32,9 @@
                 echo "<p>$num x $name <span class='price'>$$price</span></p>";
                 $total_price = $total_price + $num * $price;
             }
-
-            echo "<div class='total-wrapper'>
-                    <p class='total-sum'>Total: <span class='price'>$$total_price</span></p>
-                </div>"
+            echo    "<div class='total-wrapper'>
+                        <p class='total-sum'>Total: <span class='price'>$$total_price</span></p>
+                    </div>";
 
             ?>
         </div>
