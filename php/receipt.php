@@ -15,17 +15,18 @@
             <h2>Receipt</h2>
             <?php
             $db = new Database();
-            $cart_products = $_SESSION["cart"];
+            $bought_items = $_SESSION["bought_items"];
+
 
             // Empty receipt message
-            if (sizeof($cart_products) == 0) {
+            if (sizeof($bought_items) == 0) {
                 echo "<h3>Your cart was empty!</h3>";
                 return;
             }
 
             // Non-empty receipt message
             $total_price = 0;
-            foreach ($cart_products as $id => $num) {
+            foreach ($bought_items as $id => $num) {
                 $name = $db->getName($id);
                 $price = $db->getPrice($id);
 
@@ -35,7 +36,6 @@
             echo    "<div class='total-wrapper'>
                         <p class='total-sum'>Total: <span class='price'>$$total_price</span></p>
                     </div>";
-
             ?>
         </div>
     </main>

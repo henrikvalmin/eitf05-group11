@@ -1,4 +1,5 @@
 <?php
+require_once('csrf.php');
 session_start();
 function build_select_options($curr_id)
 {
@@ -64,7 +65,10 @@ function build_select_options($curr_id)
 
             ?>
         </div>
-        <form class="pay-form" action="receipt.php">
+        <form method="POST" class="pay-form" action="checkout.php">
+            <?php
+            echo csrf_input_field();
+            ?>
             <input type="submit" value="Check out" />
         </form>
     </main>
