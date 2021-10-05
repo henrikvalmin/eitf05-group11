@@ -10,19 +10,19 @@ include_once 'header.php';
     <form action="./inc/signup.inc.php" method="post" id="login-form">
     <h3>Sign Up</h3>
     <p>
-      <input type="text" name="username" placeholder="Username..." required>
+      <input type="text" name="username" placeholder="Username..." required minlength="3" >
       <label for="Username">Username</label>
     </p>
     <p>
-      <input type="password" name="pwd" placeholder="Password..." required>
+      <input type="password" name="pwd" placeholder="Password..." required minlength="8">
       <label for="pwd">Password</label>
     </p>
     <p>
-      <input type="password" name="pwdrepeat" placeholder="Confirm password..." required>
+      <input type="password" name="pwdrepeat" placeholder="Confirm password..." required minlength="8">
       <label for="pwdrepeat">Confirm password</label>
     </p>
     <p>
-    <input type="text" name="address" placeholder="Address..." required>
+    <input type="text" name="address" placeholder="Address..." required >
       <label for="address">Address</label>
     </p>
       <input type="submit" name="submit" value="Submit">

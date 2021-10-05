@@ -23,6 +23,15 @@ $cart_text = "Cart (" . $items_in_cart . " items)";
 ?>
 
 <header>
+<title>Plants 'n' stuff</title>
+  <link rel="stylesheet" href="../styles/index.css" />
+
+  <!-- Linking web fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=WindSong" />
+
+  <!-- <script type="module" src="js/login.js"></script> -->
+
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <h1><a href="homepage.php">Plants 'n' stuff</a></h1>
     <h2><?php echo $welcome_text; ?></h2>
     <nav>

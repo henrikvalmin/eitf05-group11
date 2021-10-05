@@ -29,8 +29,9 @@ if ($_SESSION['attempts'] < 3) {
       $statement = $con->prepare("SELECT * FROM users WHERE username=?");
       $statement->bind_param("s", $username);
 
-      // Set variables
-      $username = $_POST["username"];
+      // Set variables 
+      //$username = ($_POST["username"]); // Set if preforming XSS
+      $username = htmlspecialchars($_POST["username"]); // Disable if XSS
       $password = $_POST["password"];
 
       // Execute the prepared statement and store result

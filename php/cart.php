@@ -1,6 +1,6 @@
 <?php
 require_once('csrf.php');
-session_start();
+include('header.php');
 function build_select_options($curr_id)
 {
     $select = "";
@@ -30,8 +30,6 @@ function build_select_options($curr_id)
     <link rel="stylesheet" href="../styles/cart.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=WindSong" />
 </head>
-
-<?php include('header.php') ?>
 
 <body>
     <main>
