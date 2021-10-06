@@ -102,6 +102,8 @@ if ($_SESSION['attempts']==3) {
       </p>
 
       <input type="submit" name="submit" value="Submit">
+      <input type="reset">
+      <element id= "login-reference"><a href="signup.php">Don't have an account? Sign up </a></element> 
     </form>
   </main>
 </body>
