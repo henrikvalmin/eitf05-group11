@@ -83,19 +83,20 @@ function validPassword($pwd)
 
 function createUser($conn, $username, $pwd, $address)
 {
-    $sql = "INSERT INTO users (username, password, address) VALUES (?,?,?);";
-    $statement = mysqli_stmt_init($conn);
-
-    if (!mysqli_stmt_prepare($statement, $sql)) {
-        header("location:../signup.php?error=statementFailed");
+    $sql = "INSERT INTO users (username, password, address, salt) VALUES (?,?,?,?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location:../signup.php?error=statementFaild");
         exit();
     }
 
-    $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+    // $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+    $salt = random_bytes(5);
+    $hashedPwd = hash('sha256', $salt . $pwd);
 
-    mysqli_stmt_bind_param($statement, "sss", $username, $hashedPwd, $address);
-    mysqli_stmt_execute($statement);
-    mysqli_stmt_close($statement);
+    mysqli_stmt_bind_param($stmt, "ssss", $username, $hashedPwd, $address, $salt);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
     header("location:../signup.php?error=none");
     exit();
 }

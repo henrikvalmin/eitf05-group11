@@ -1,10 +1,7 @@
 --Create usertables
 DROP TABLE IF EXISTS users;
-CREATE TABLE `plants`.`users` ( `username` TEXT NOT NULL , `password` TEXT NOT NULL , `address` TEXT NOT NULL ) ENGINE = InnoDB;
-INSERT INTO `users` (`username`, `password`, `address`) VALUES ('William', 'testW', 'Malmö');
-INSERT INTO `users` (`username`, `password`, `address`) VALUES ('Vanessa', 'testV', 'Helsingborg');
-INSERT INTO `users` (`username`, `password`, `address`) VALUES ('Henrik', 'testH', 'Göteborg');
-INSERT INTO `users` (`username`, `password`, `address`) VALUES ('Josefin', 'testJ', 'Stockholm');
+CREATE TABLE `plants`.`users` ( `username` TEXT NOT NULL , `password` TEXT NOT NULL , `address` TEXT NOT NULL, `salt` TEXT NOT NULL) ENGINE = InnoDB;
+
 
 --Create producttable
 DROP TABLE IF EXISTS products;
