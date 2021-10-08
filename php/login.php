@@ -99,17 +99,21 @@ if ($_SESSION['attempts'] == 3) {
       <div class="message"><?php if ($msg != "") {
                               echo $msg;
                             } ?></div>
-      <h3>Enter Login Details</h3>
+      <h3>Login</h3>
 
       <p>
         <input type="text" name="username" placeholder="Username" />
+        <label for="Username">Username</label>
       </p>
 
       <p>
         <input type="password" name="password" placeholder="Password">
+        <label for="pwd">Password</label>
       </p>
 
       <input type="submit" name="submit" value="Submit">
+      <input type="reset">
+      <element id="login-reference"><a href="signup.php">Don't have an account? Sign up </a></element>
     </form>
   </main>
 </body>
