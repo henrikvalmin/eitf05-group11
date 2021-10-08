@@ -90,7 +90,7 @@ function createUser($conn, $username, $pwd, $address)
         exit();
     }
 
-    $salt = uniqid(true);
+    $salt = bin2hex(random_bytes(5));
     $hashedPwd = hash('sha256', $salt . $pwd);
 
     mysqli_stmt_bind_param($stmt, "ssss", $username, $hashedPwd, $address, $salt);
