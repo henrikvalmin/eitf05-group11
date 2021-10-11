@@ -1,6 +1,5 @@
 <?php
 require_once('csrf.php');
-session_start();
 
 ?>
 

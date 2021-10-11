@@ -38,36 +38,39 @@ function build_select_options($curr_id)
 
             $db = new Database();
 
-            $cart_products = $_SESSION["cart"];
-            foreach ($cart_products as $id => $num) {
-                $name = $db->getName($id);
-                $price = $db->getPrice($id);
+            if (isset($_SESSION["cart"]) && sizeof($_SESSION["cart"]) > 0) {
 
-                $cart_item =
+                $cart_products = $_SESSION["cart"];
+                foreach ($cart_products as $id => $num) {
+                    $name = $db->getName($id);
+                    $price = $db->getPrice($id);
+                    
+                    $cart_item =
                     "<div class='cart-item'>
                     <div cart-item-description>
-                        <p class='name'>$name</p>
-                        <p class='price'>$$price</p>
+                    <p class='name'>$name</p>
+                    <p class='price'>$$price</p>
                     </div>
                     <form method='POST' action='changeCart.php'>
-                        <select name='newValue'>
-                ";
-                $cart_item .= build_select_options($id);
-                $cart_item .=
+                    <select name='newValue'>
+                    ";
+                    $cart_item .= build_select_options($id);
+                    $cart_item .=
                     "</select>
                     " . csrf_input_field() . "
-                        <input type='hidden' name='id' value='$id' />
-                        <input type='submit' value='Update amount' />
+                    <input type='hidden' name='id' value='$id' />
+                    <input type='submit' value='Update amount' />
                     </form>
-                </div>";
-                echo $cart_item;
-            }
-
-            ?>
+                    </div>";
+                    echo $cart_item;
+                }
+            } 
+                
+                ?>
         </div>
         <form method="POST" class="pay-form" action="checkout.php">
             <?php
-            if (sizeof($_SESSION["cart"]) != 0) {
+            if (isset($_SESSION["cart"]) && sizeof($_SESSION["cart"]) != 0) {
                 echo csrf_input_field();
                 echo "<input type='submit' value='Check out' />";
             } else {

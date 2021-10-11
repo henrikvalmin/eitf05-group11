@@ -1,0 +1,11 @@
+1. Comment code in signup.inc.php (username-variable, usernameinvalid-function) 
+and in login.php(username-variable);
+2. Create a user with username: "<script>alert('XSS attack');</script>"
+3. Log in as this user;
+4. Comment code to make secure
+5. Create a user "<script>alert('XSS attack 2');</script>"
+6. Log In and make sure nothing happens.
+
+
+"<script><a href="https://henrikvalmin.github.io/">Example.com</a></script>"
+"<script src="https://henrikvalmin.github.io/attackLocalhost.html"> </script>"
