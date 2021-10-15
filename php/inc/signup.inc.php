@@ -3,9 +3,9 @@
 if (isset($_POST["submit"])) {
 
   // Set variables 
-  //$username = ($_POST["username"]); // Set if XSS
+  $username = ($_POST["username"]);
   $username = htmlspecialchars($_POST["username"]); // Disable if XSS
-  $address = $_POST["address"];
+  $address = htmlspecialchars($_POST["address"]);
   $pwd = $_POST["pwd"];
   $pwdrepeat = $_POST["pwdrepeat"];
 
@@ -17,7 +17,7 @@ if (isset($_POST["submit"])) {
     exit();
   }
   
-  //Unset when XSS
+  //Disable this when XSS
   if (invalidUsername($username) !== false) {
     header("location:../signup.php?error=invalidUsername");
     exit();
